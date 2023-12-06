@@ -78,7 +78,7 @@ Aim.saveData=function(){
 	let time=new Date();
 	time="backup--"+time.getFullYear()+"-"+time.getMonth()+"-"+time.getDate();
 	let path="datas/aim/backups/"+time;
-	if(!Aim.io.isDir(path))
+	if(!Aim.io.isDir(path)){
 	    //Call.sendMessage("begin backup data: "+time)
 		Log.log(Log.LogLevel.info,"begin backup data: @",time)
 		Aim.io.mkdir(path);
