@@ -92,7 +92,7 @@ Aim.POWER=""
 
 let defaultValue={
 	enabled:true,disableSkillsInPvp:true,
-	broad:"[#99ff66]指令列表：[#ffccff];help [#66ccff]or [#ffccff];;\n[#99ff66]在线人数：[yellow]${playerAmount}\n[#99ff66]地图名称：[yellow]${mapName}\n[#99ff66]时长：[yellow]${gameTime}",
+	broad:"[#99ff66]指令列表：[#ffccff];help \n[#99ff66]快捷指令：[#ffccff];\n[#99ff66]在线人数：[yellow]${playerAmount}\n[#99ff66]地图名称：[yellow]${mapName}\n[#99ff66]时长：[yellow]${gameTime}",
 	//"use \"*aimcfg broad str\\ning...\"\nto edit this message",jsIsEnabled:true,
 	voteTime:60,addVoteTime:5,
 	minVoteAgree:2,kickTime:10
@@ -281,7 +281,7 @@ Aim.data.getData=(p)=>{
 			power:20,powerCap:20,powerReplyTime:40,
 			lastUpdate:Date.now(),level:1,exp:0,
 			canUse:true,name:"",active:true,oldMode:false,
-			title:"",broad:true,health:false,voteMenu:true,
+			title:"",broad:true,health:true,voteMenu:true,
 			history:false,joinedMode:[],AimClient:false,
 			totalScore:0,fame:0,scores:[0,0,0,0,0],shortID:""
 		}

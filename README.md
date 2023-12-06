@@ -7,6 +7,8 @@
 ## 
 Add more commands.
 
+You can preview it in 61.183.42.66:33350.
+
 ## how to use
 ### 1,automatic
 > Download [releases.zip](https://github.com/byzp/aim/releases)

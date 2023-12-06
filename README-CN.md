@@ -7,6 +7,8 @@
 ## 
 添加更多命令
 
+你可以在61.183.42.66:33350预览
+
 ## 如何使用
 ### 1,自动
 > 下载 [releases.zip](https://github.com/byzp/aim/releases)
