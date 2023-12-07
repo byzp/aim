@@ -1,3 +1,5 @@
+"use strict";
+
 Aim.adminCommands[";a"]={
     func:(p,t,m)=>{
         if(!p.admin){
@@ -26,7 +28,7 @@ Aim.adminCommands[";js"]={
     func:(p,t,m)=>{
         if(Aim.data.config.jsIsEnabled&&p.admin){
             var res=Vars.mods.scripts.runConsole(m.substring(4,m.length))
-            infoLog(p.uuid().substring(0,3),m+">"+res)
+            infoLog(p.uuid(),m+">"+res)
             p.sendMessage(res)
         }
     },

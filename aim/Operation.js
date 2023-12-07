@@ -264,7 +264,6 @@ Aim.op.host=(map,mode,t)=>{
 }
 
 Aim.op.utcToStr=(p,t)=>{
-    let t=Aim.data.muting[p.uuid().substring(0, 3)]-Date.now()
     t=parseInt(t/1000)
 	let time=parseInt(t/86400)+bundle(p,"day")
 	time+=parseInt(t/3600)%24+bundle(p,"hour")

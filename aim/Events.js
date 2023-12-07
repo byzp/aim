@@ -1,7 +1,5 @@
 "use strict";
 
-//投票bug修复
-//拆除分数修复
 Aim.event = {}
 
 Aim.event.requires = {
@@ -42,6 +40,7 @@ Aim.event.requires = {
 }
 
 Aim.event.chatFilter = (p, me) => {
+    let uuid=p.uuid()
     let m = me
     try {
         if (Aim.data.getData(p).oldMode) {
@@ -63,8 +62,8 @@ Aim.event.chatFilter = (p, me) => {
             if (ret != undefined) m = ret
         }
         if (cmd != undefined && (t[0] == ";aimcfg" || Aim.data.config.enabled)) {
-            if (Aim.data.muting[p.uuid().substring(0, 3)] > Date.now() && cmd.muteable) {
-                p.sendMessage(bundle(p, "muting", Aim.op.utcToStr(p,undefined)))
+            if (Aim.data.muting[uuid] > Date.now() && cmd.muteable) {
+                p.sendMessage(bundle(p, "muting", Aim.op.utcToStr(p,Aim.data.muting[uuid] -Date.now())))
                 m = null
                 return
             }
@@ -77,10 +76,10 @@ Aim.event.chatFilter = (p, me) => {
             p.lastText = ""
             m = null
         } else if (scmd != undefined && Aim.data.config.enabled) {
-            if (Aim.data.muting[p.uuid().substring(0, 3)] > Date.now() && scmd.muteable) {
+            if (Aim.data.muting[uuid] > Date.now() && scmd.muteable) {
                 //p.sendMessage(p+"\n"+p.uuid()+"\n")
                 //log(Aim.data.muting[p.uuid().substring(0, 3)])
-                p.sendMessage(bundle(p, "muting", Aim.op.utcToStr(p,undefined)))
+                p.sendMessage(bundle(p, "muting", Aim.op.utcToStr(p,Aim.data.muting[uuid] -Date.now())))
                 return null
             }
             if (Aim.state.bannedSkills.indexOf(t[0]) == -1) {
@@ -117,8 +116,8 @@ Aim.event.chatFilter = (p, me) => {
         } else if (t[0].startsWith(";")) {
             p.sendMessage(bundle(p, "aim.errorCmd", t[0]))
             m = null
-        } else if (Aim.data.muting[p.uuid().substring(0, 3)] > Date.now()) {
-            p.sendMessage(bundle(p, "muting", Aim.op.utcToStr(p,undefined)))
+        } else if (Aim.data.muting[uuid] > Date.now()) {
+            p.sendMessage(bundle(p, "muting", Aim.op.utcToStr(p,Aim.data.muting[uuid] -Date.now())))
             return null
         }
         if (m != null) m = Aim.op.messageFilter(m, p)
@@ -142,7 +141,7 @@ Aim.event.chatFilter = (p, me) => {
         //p.getInfo().lastSentMessage=m+""
     } catch (e) {
         p.sendMessage(e)
-        errLog(p.uuid().substring(0, 3) + " -> " + me, e)
+        errLog(p.uuid() + " -> " + me, e)
         //p.getInfo().lastSentMessage=""
         m = null
     }
@@ -223,10 +222,10 @@ Aim.event.chatFilter=(p,me)=>{
 Aim.event.playerConnect = (e) => {
     if (!Aim.data.config.enabled) return;
     let p = e.player
-    let bl = Aim.data.blacklist[p.uuid()]
-    Aim.players[p.uuid().substring(0, 3)] = p
+    let uuid=p.uuid();
+    let bl = Aim.data.blacklist[uuid]
     let data = Aim.data.getData(p)
-    if (bl == undefined) bl = Aim.data.blacklist[p.uuid().substring(0, 3)]
+    if (bl == undefined) bl = Aim.data.blacklist[uuid]
     if (bl != undefined && (bl.unbantime > Date.now() || bl.unbantime == undefined)) {
         let mess = bundle(p, "aim.inBlacklistM") + "\n"
         if (bl.unbantime != undefined) {
@@ -238,7 +237,7 @@ Aim.event.playerConnect = (e) => {
             time += (parseInt(t) % 60) + bundle(p, "second")
             mess += bundle(p, "aim.inBlacklistT", time) + "\n"
             //p.name = "[white][LV." + data.level + "]" + data.title + "|" + p.uuid().substring(0, 3) + "|[#" + p.color + "]" + p.name + "[white]"
-            p.name = "[#B0E0E6]" + p.uuid().substring(0, 3)+ "[white] | " + p.name + "[white]"
+            //p.name = "[#B0E0E6]" + p.uuid().substring(0, 3)+ "[white] | " + p.name + "[white]"
             sayX("aim.inBlacklist", p.name, bl.reason, parseInt(t / 86400), parseInt(t / 3600) % 24, parseInt(t / 60) % 60, parseInt(t % 60))
         } else {
             mess += bundle(p, "permanent") + "\n"
@@ -253,16 +252,19 @@ Aim.event.playerConnect = (e) => {
     for (let func of Aim.event.requires.playerConnect) {
         func(p)
     }
+
     let realName = p.name;
     Aim.data.getData(p).realName = realName;
     //p.name = "[white][LV." + data.level + "]" + data.title + "|" + p.uuid().substring(0, 3) + "|[#" + p.color + "]" + p.name + "[white]"
-    p.name = "[#B0E0E6]" + p.uuid().substring(0, 3)+ "[white] | " + p.name + "[white]"
+    
 }
 
 Aim.event.playerJoin = (e) => {
     if (!Aim.data.config.enabled) return;
     let p = e.player
-    Aim.players[p.uuid().substring(0, 3)] = p
+    //Aim.players[p.uuid().substring(0, 3)] = p
+    let ID=initID(p);
+    p.name = "[#B0E0E6]" +ID + "[white] | " + p.name + "[white]"
     /*
     Timer.schedule(()=>{
     	Call.sendMessage("[[[green]+[white]] "+p.name)
@@ -326,16 +328,19 @@ Aim.event.worldLoadOver = () => {
 }
 
 Aim.event.playerLeave = (e) => {
+    let uuid=e.player.uuid();
     if (!Aim.data.config.enabled) return;
     //infoLog(e.player.name+" has disconnected. ["+e.player.uuid()+"] (closed)")
-    let bl = Aim.data.blacklist[e.player.uuid()]
+    let bl = Aim.data.blacklist[uuid]
     if (!(bl != undefined && (bl.unbantime > Date.now() || bl.unbantime == undefined))) {
         //Call.sendMessage("[[[red]-[white]] "+e.player.name)
-
         for (let func of Aim.event.requires.playerLeave) {
             func(e.player)
         }
     }
+    log(getID(uuid))
+    delete Aim.players[getID(uuid)];
+    
 }
 
 Aim.event.update30 = function() {

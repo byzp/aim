@@ -16,7 +16,7 @@
 	"none":"none",
 	"aim.inBlacklistT":"will be unban after {$1}",
 	"aim.inBlacklistM":"you are still on the blacklist",
-	"aim.command.help.desc":" - ",
+	"aim.command.help.desc":"help",
 	"aim.command.vid":"<vote id>",
 	"aim.command.y.desc":"agree a vote",
 	"aim.command.n.desc":"oppose a vote",
@@ -59,6 +59,7 @@
 	"aim.command.rmute.desc":"create vote:removeMute",
 	"rtv":"rtv",
 	"restart":"restart the server",
+	"notFound":"not found",
 	"aim.command.rtv.args":"",
 	"aim.command.rtv.desc":"create vote:rtv",
 	"aim.command.mutei.args":"<id> [time(3h;2m;1s)/remove]",
@@ -203,6 +204,7 @@
 	"vote":"vote",
 	"close":"close",
 	"me":"me",
+	"maxRunwave":"The max runwave is 20.",
 	
 	"team.kicked":"you were kicked team {$1}",
 	

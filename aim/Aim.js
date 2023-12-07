@@ -36,7 +36,7 @@ Aim.mapUrl="http://127.0.0.1:7002"
 Aim.showScore=false
 
 
-Aim.version="v2.0.1"
+Aim.version="v2.0.2"
 Aim.build=2
 
 const eb=false;
@@ -81,6 +81,7 @@ execute("aim/MapTagLoader.js");
 execute("aim/Addon.js");
 execute("aim/MapTags.js");
 execute("aim/MenuUI.js");
+//execute("aim/md5.js")
 
 if(Aim.loaded!=true){
 	execute("aim/EventLoad.js");
@@ -164,9 +165,10 @@ const getPlayer=(p)=>{
 	})
 }
 */
-var getPlayer=(p)=>{
-	return Aim.players[p]!=undefined ? Aim.players[p] : (()=>{
-		return Groups.player.find(pla=>pla.name==p)
+var getPlayer=(player)=>{
+    //id or name
+	return Aim.players[player]!=undefined ? Aim.players[player] : (()=>{
+		return Groups.player.find(pla=>pla.name==player)
 	})()
 }
 
@@ -272,9 +274,38 @@ const unbundle=function(player,index){
 		return index
 	}
 }
+/*
+const shortID=function(player){
+    uuid=player.uuid();
+	if(Aim.data.userinfo[uuid].shortID!=undefined){
+	    return Aim.data.userinfo[uuid].shortID;
+	}else{
+	    Aim.data.userinfo[uuid].shortID=b64_md5(uuid).substring(0,3);
+	    return Aim.data.userinfo[uuid].shortID;
+	}
+}
+*/
 
-Aim.data.getData=(p)=>{
-	let data=Aim.data.userinfo[p.uuid()]
+const initID=function(player){
+    let i=0;
+	while(Aim.players[i]!=undefined){
+	    i++;
+	}
+	Aim.players[i]=player;
+	return i;
+}
+
+const getID=function(uuid){
+    for(let id in Aim.players){
+        if(Aim.players[id].uuid()==uuid){
+            return id;
+        }
+    }
+    return null;
+}
+
+Aim.data.getData=(player)=>{
+	let data=Aim.data.userinfo[player.uuid()]
 	if(data==undefined){
 		data={
 			point:30,pointCap:30,pointReplyTime:80,
@@ -283,9 +314,9 @@ Aim.data.getData=(p)=>{
 			canUse:true,name:"",active:true,oldMode:false,
 			title:"",broad:true,health:true,voteMenu:true,
 			history:false,joinedMode:[],AimClient:false,
-			totalScore:0,fame:0,scores:[0,0,0,0,0],shortID:""
+			totalScore:0,fame:0,scores:[0,0,0,0,0] //,shortID:""
 		}
-		Aim.data.userinfo[p.uuid()]=data
+		Aim.data.userinfo[player.uuid()]=data
 	}
 	return data
 }

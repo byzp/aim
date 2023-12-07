@@ -4,7 +4,7 @@
 
 Aim.commands[";aimver"]={
     func:function(p,t,m) {
-        p.sendMessage("aim "+Aim.version+"\nbuild"+Aim.build+"\nby awa(LSP237198162@163.com)\naaa改版，需要源码请联系我(1394026378@qq.com)")
+        p.sendMessage("aim "+Aim.version+"\nbuild"+Aim.build+"\nby awa(LSP237198162@163.com)\naaa改版，https://github.com/byzp/aim")
     },
     args:"",
     desc:"show aim version",
@@ -105,14 +105,14 @@ Aim.commands[";"]={
     func:(p,t,m)=>{
         let status={};
         let selects=[
-            ["观察者模式"],
-            ["随机换图"],
-            ["跳波(一轮)"],
-            ["投降"],
-            ["更换队伍"],
-            ["命令列表"],
-            ["地图列表"],
-            ["close"]
+            [bundle(p,"aim.command.ob.desc")],
+            [bundle(p,"aim.command.rtv.desc")],
+            [bundle(p,"aim.command.runwave.desc")],
+            [bundle(p,"aim.command.gameover.desc")],
+            [bundle(p,"aim.command.changeteam.desc")],
+            [bundle(p,"aim.command.help.desc")],
+            [bundle(p,"aim.command.maps.desc")],
+            [bundle(p,"close")]
         ];
         let menuId=Menus.registerMenu((p,select)=>{
             if(select==0){
@@ -350,7 +350,7 @@ Aim.commands[";blacklist"]={
         for(let uuid in Aim.data.blacklist){
             let info=Aim.data.blacklist[uuid]
             if(info.unbantime<Date.now()) continue
-            me+=uuid.substring(0,3)+" "+info.name+"[white]\n"
+            me+=/*uuid.substring(0,3)+" "+*/info.name+"[white]\n"
             me+=bundle(p,"admin")+":"+info.admin+"[white]\n"
             let t=parseInt((Date.now()-info.bantime)/1000)
             let time=parseInt(t/86400)+bundle(p,"day")

@@ -16,7 +16,7 @@
 	"none":"无",
 	"aim.inBlacklistT":"将在 {$1} 后解封",
 	"aim.inBlacklistM":"你还在黑名单中",
-	"aim.command.help.desc":" - ",
+	"aim.command.help.desc":"help",
 	"aim.command.vid":"<投票id>",
 	"aim.command.y.desc":"同意一个投票",
 	"aim.command.n.desc":"拒绝一个投票",
@@ -59,6 +59,7 @@
 	"aim.command.rmute.desc":"创建投票:解除禁言",
 	"rtv":"随机换图",
 	"restart":"重启服务器",
+	"notFound":"未找到目标",
 	"aim.command.rtv.args":"",
 	"aim.command.rtv.desc":"创建投票:随机换图",
 	"aim.command.mutei.args":"<id> [时间(3h;2m;1s)/remove]",
@@ -204,6 +205,7 @@
 	"vote":"投票",
 	"close":"关闭",
 	"me":"我",
+	"maxRunwave":"最大跳波数为20",
 	
 	"team.kicked":"你被踢出了队伍 {$1}",
 	

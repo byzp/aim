@@ -59,6 +59,13 @@ Events.on(PlayerJoin,(e)=>{
 		errLog("Aim.event.playerJoin",e)
 	}
 })
+Events.on(PlayerLeave,(e)=>{
+	try{
+		Aim.event.playerLeave(e);
+	}catch(e){
+		errLog("Aim.event.playerLeave",e)
+	}
+})
 Timer.schedule(()=>{
 	try{
 	Aim.event.update1()

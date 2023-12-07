@@ -252,7 +252,7 @@ Aim.score.winEvent=(winner)=>{
             allPowers+=addpw
             allExps+=addexp
         }
-        let p=getPlayer(uuid.substring(0,3))
+        let p=getPlayer(getID(uuid))
         let mult=((Aim.data.userinfo[uuid].level-1)*0.01)+1
         if(winner==Aim.score.list[uuid].team||(Vars.state.waves>Vars.state.rules.winWave&&Vars.state.rules.winWave!=0)){
             mult*=Aim.score.winMult

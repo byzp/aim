@@ -97,7 +97,7 @@ Aim.commands[";kick"]={
     func:(p,t,m)=>{
         let player=getPlayer(t[1]);
         if(player==null){
-            p.sendMessage("未找到此玩家，可能由于名字含有颜色代码，请尝试使用名字前的三位ID")
+            p.sendMessage(bundle(p,"notFound"))
             return
         }
         Aim.vote.add("$"+m.substring(1,m.length)+"  \n"+player.name,p)
@@ -112,7 +112,7 @@ Aim.commands[";kick"]={
 Aim.commands[";killall"]={
     func:(p,t,m)=>{
         if(!Vars.state.rules.infiniteResources){
-            p.sendMessage("仅沙盒模式可用");
+            p.sendMessage("sandbox only");
             return;
         }
         Aim.vote.add("$"+m.substring(1,m.length),p)
@@ -130,7 +130,7 @@ Aim.commands[";runwave"]={
             m+=" 1";
         }
         if((t[1])>20){
-            p.sendMessage("一次跳波不可超过20轮");
+            p.sendMessage(bundle(p,"maxRunwave"));
             return;
         }
         let name=m.substring(9,m.length)
@@ -227,7 +227,7 @@ Aim.commands[";mute"]={
     func:(p,t,m)=>{
         let player=getPlayer(t[1]);
         if(player==null){
-            p.sendMessage("未找到此玩家，可能由于名字含有颜色代码，请尝试使用名字前的三位ID")
+            p.sendMessage(bundle(p,"notFound"))
             return
         }
         Aim.vote.add("$mute "+m.substring(6,m.length),p)
@@ -248,7 +248,7 @@ Aim.commands[";rmute"]={
             return
         }
         */
-        Aim.vote.add("$rmute "+p.uuid().substring(0,3),p)
+        Aim.vote.add("$rmute "+getID(p.uuid()),p)
     },
     args:"$aim.command.rmute.args",
     desc:"$aim.command.rmute.desc",
@@ -260,7 +260,7 @@ Aim.commands[";fob"]={
     func:(p,t,m)=>{
         let player=getPlayer(t[1]);
         if(player==null){
-            p.sendMessage("未找到此玩家，可能由于名字含有颜色代码，请尝试使用名字前的三位ID")
+            p.sendMessage(bundle(p,"notFound"))
             return
         }
         Aim.vote.add("$fob "+m.substring(5,m.length),p)
@@ -274,12 +274,7 @@ Aim.commands[";fob"]={
 
 Aim.commands[";rob"]={
     func:(p,t,m)=>{
-        let player=getPlayer(t[1]);
-        if(player==null){
-            p.sendMessage("未找到此玩家，可能由于名字含有颜色代码，请尝试使用名字前的三位ID")
-            return
-        }
-        Aim.vote.add("$rob "+p.uuid().substring(0,3),p)
+        Aim.vote.add("$rob "+getID(p.uuid()),p)
     },
     args:"$aim.command.rob.args",
     desc:"$aim.command.rob.desc",

@@ -22,7 +22,7 @@ You can preview it in 61.183.42.66:33350.
 ### 2,manual
 > Clone this repository.
 
-> Move the repository to the server folder.
+> Move the aim folder to the server folder.
 
 > Start the server.
 

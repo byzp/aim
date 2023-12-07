@@ -105,8 +105,8 @@ Aim.team.getTeam=(player,teams_,playerss)=>{
 Aim.team.giveTeam=(player,players)=>{
     if(!player) return
     if(players==undefined) players=Groups.player;
-    if(Aim.state.forceOb[player.uuid().substring(0,3)]>Date.now()){
-        player.sendMessage(bundle(player,"forceOb",Aim.op.utcToStr(player,Aim.state.forceOb[player.uuid().substring(0,3)]-Date.now())))
+    if(Aim.state.forceOb[player.uuid()]>Date.now()){
+        player.sendMessage(bundle(player,"forceOb",Aim.op.utcToStr(player,Aim.state.forceOb[player.uuid()]-Date.now())))
         player.team(Team.get(255))
         return Team.get(255)
     }

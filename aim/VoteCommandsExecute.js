@@ -428,7 +428,7 @@ Aim.voteCommands["mute"] = {
             }
         }
         addt = Math.min(addt, 4 * 60 * 60 * 1000)
-        Aim.data.muting[t[1]] = Date.now() + addt
+        Aim.data.muting[getPlayer(t[1]).uuid()] = Date.now() + addt
     },
     a: true,
     canVote: (p, cp, t, m) => {
@@ -438,7 +438,7 @@ Aim.voteCommands["mute"] = {
 
 Aim.voteCommands["rmute"] = {
     func: (p, t, m) => {
-        delete Aim.data.muting[t[1]]
+        delete Aim.data.muting[getPlayer(t[1]).uuid()]
     },
     a: true,
     canVote: (p, cp, t, m) => {
@@ -465,7 +465,7 @@ Aim.voteCommands["fob"] = {
             }
         }
         addt = Math.min(addt, 4 * 60 * 60 * 1000)
-        Aim.state.forceOb[t[1]] = Date.now() + addt
+        Aim.state.forceOb[getPlayer(t[1]).uuid()] = Date.now() + addt
         try {
             getPlayer(t[1]).unit(UnitTypes.flare.create(Team.get(255)))
             Aim.team.giveTeam(getPlayer(t[1]))
@@ -481,7 +481,7 @@ Aim.voteCommands["fob"] = {
 
 Aim.voteCommands["rob"] = {
     func: (p, t, m) => {
-        delete Aim.state.forceOb[t[1]]
+        delete Aim.state.forceOb[getPlayer(t[1]).uuid()]
         Aim.team.giveTeam(getPlayer(t[1]))
     },
     a: true,
