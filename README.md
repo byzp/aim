@@ -7,7 +7,7 @@
 ## 
 Add more commands.
 
-You can preview it in 61.183.42.66:33350.
+You can preview it in 222.186.134.207:33330
 
 ## how to use
 ### 1,automatic
