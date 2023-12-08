@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>更新日报</title>
+<link href="/styles/index.css" rel="stylesheet">
+<link href="/styles/input.css" rel="stylesheet">
+<script src="/scripts/jquery-3.6.0.min.js"></script>
+<style>
+</style>
+</head>
+<body>
+<form id="form" class="childTab" action="/api/changeNewsAdmin" target="_self" method="post">
+<textarea name="dsp" id="dsp" class="bigInput" style="height:45vh" placeholder="游戏内显示"></textarea><br>
+<textarea name="all" id="all" class="bigInput" style="height:45vh" placeholder="所有"></textarea><br>
+<textarea name="usid" id="usid" class="input" style="height:5vh" placeholder="管理id"></textarea><br>
+<input class="submitButton" type="submit" style="height:5vh" value=" 提交" onClick="return cherk()">
+</form>
+
+<script>
+
+function cherk(){
+    return $("#usid").val()!=""
+}
+
+var getDate=()=>{
+    return Math.floor((Date.now()+(8*60*60*1000))/86400000)-19050
+}
+function load(){
+    $("#all").empty()
+    $("#all").append("加载中...")
+    $.ajax({
+        url:"/api/getNews?day="+getDate(),
+        type:"get",
+        dataType:"text",
+        success:function(text){
+            $("#all").empty()
+            $("#all").text(text)
+        },
+        error:function(err){
+            $("#all").empty()
+            $("#all").text("加载失败:"+err);
+        }
+    })
+    $("#dsp").empty()
+    $("#dsp").append("加载中...")
+    $.ajax({
+        url:"/api/getGameDisplayNewsCurr",
+        type:"get",
+        dataType:"text",
+        success:function(text){
+            $("#dsp").empty()
+            $("#dsp").text(text)
+        },
+        error:function(err){
+            $("#dsp").empty()
+            $("#dsp").text("加载失败:"+err);
+        }
+    })
+}
+window.onload=()=>{load()};
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>文件列表</title>
+<link href="/styles/index.css" rel="stylesheet">
+<link href="/styles/input.css" rel="stylesheet">
+<script src="/scripts/jquery-3.6.0.min.js"></script>
+
+<script src="/scripts/fileList.js"></script>
+
+<style>
+table{table-layout: fixed;}
+td{word-break: break-all; word-wrap:break-word;}
+.radio{
+    width:20px;
+    height:20px;
+}
+
+.but button{
+    width:100%;
+    height:100%;
+    font-size:10px;
+}
+
+.but{
+    height:50px;
+}
+
+.button.modeSelect{
+    width:15.5vw;
+    height:80px;
+}
+.selectedButton.modeSelect{
+    width:15.5vw;
+    height:80px;
+}
+
+</style>
+
+</head>
+<body>
+<div class="bg"></div>
+<div class="tab">
+    <div id="tabs">
+        <button class="button" onclick="javascript:location.assign('/index.html')">  主页 </button>
+        <button class="button" onclick="javascript:location.assign('/maps.html')">  地图列表 </button>
+        <button class="button" onclick="javascript:location.assign('/upload.html')">  上传地图 </button>
+        <button class="button" onclick="javascript:location.assign('/news.html')">  土豆日报 </button>
+        <button class="selectedButton" onclick="javascript:location.assign('/files/list.html')">  资源 </button>
+    </div>
+</div>
+<div class="childTab">
+<input id="usid" class="input" style="width:80%" placeholder="usid">
+<button style="width:18%;height:50px;font-size:30px;margin:0" onclick="javascript:location.assign('/files/upload.html')">  上传</button><br>
+<input id="search" class="input" style="width:80%" placeholder="搜索">
+<button style="width:18%;height:50px;font-size:30px;margin:0" onclick='load()'>  搜索</button>
+</div>
+<div id="table" class="childTab">
+按"搜索"来开始加载
+</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>上传地图</title>
+<link href="/styles/index.css" rel="stylesheet">
+<link href="./styles/input.css" rel="stylesheet">
+<style>
+#alert{
+    color:#ff0000;
+    font-size:40px;
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="tab">
+    <div id="tabs">
+        <button class="button" onclick="javascript:location.assign('/index.html')">  主页 </button>
+        <button class="button" onclick="javascript:location.assign('/maps.html')">  地图列表 </button>
+        <button class="selectedButton" onclick="javascript:location.assign('/upload.html')">  上传地图 </button>
+        <button class="button" onclick="javascript:location.assign('/news.html')">  土豆日报 </button>
+        <button class="button" onclick="javascript:location.assign('/files/list.html')">  资源 </button>
+    </div>
+</div><br>
+<!--
+<div class="box1">
+<a id="alert">禁止把地图站当网盘!</a><br>
+<img src="/禁止把地图站当网盘.jpg" style="width:360px">
+</div>
+-->
+<form id="form" action="/api/upload" target="_self" method="post" enctype="multipart/form-data">
+<a class="input" class="text">
+ 地图文件:
+</a>
+<input name="file" class="childTab input" type="file" id="file">
+<br>
+<textarea name="mapName" id="mapName" class="input" placeholder="地图名(必填)"></textarea>
+<textarea name="author" id="author" class="input" placeholder="作者(必填)"></textarea>
+<textarea name="desc" id="desc" class="bigInput" placeholder="介绍"></textarea><br>
+<textarea name="usid" id="usid" class="input" placeholder="usid（删除时需要填写，留空则任何人可删除）"></textarea><br>
+<br>
+<a class="text">
+<input class="checkbox" type="checkbox" name="tags-1" value="survival">生
+<input class="checkbox" type="checkbox" name="tags-2" value="attack">攻
+<input class="checkbox" type="checkbox" name="tags-3" value="pvp">P
+<input class="checkbox" type="checkbox" name="tags-4" value="sandbox">沙
+<input class="checkbox" type="checkbox" name="tags-8" value="editor">编
+<input class="checkbox" type="checkbox" name="tags-5" value="va">审
+<input class="checkbox" type="checkbox" name="tags-11" value="jsmap">JS
+<br>
+<input class="checkbox" type="checkbox" name="tags-14" value="nonstandard">非
+</a>
+<input class="submitButton" type="submit" value=" 上传" onClick="return cherk()">
+</form>
+
+<script>
+function cherk(){
+    return $("#author")!=""
+}
+</script>
+
+</body>
+</html>

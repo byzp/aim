@@ -1,0 +1,88 @@
+<html>
+<head>
+<title>更新地图信息</title>
+<link href="/styles/index.css" rel="stylesheet">
+<link href="./styles/input.css" rel="stylesheet">
+<script src="/scripts/jquery-3.6.0.min.js"></script>
+<style>
+.hiddeninput{
+    width:900px;
+    height:40px;
+    font-size:25px;
+    display:none;
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div id="tabs">
+    <button class="button" onclick="javascript:window.history.back()">  返回 </button>
+</div>
+<form id="form" class="childTab" action="/api/update" target="_self" method="post" enctype="multipart/form-data">
+<a class="text"> 地图id:<br><textarea class="input" id="mapid" name="id" readonly></textarea></a><br>
+<a class="text"> 文件名:<br><textarea class="input" id="name" name="name" readonly></textarea></a><br>
+<a class="input" class="text">
+ 新地图文件(可空):<br>
+</a>
+<input name="file" type="file" id="file" class="input">
+<br>
+<textarea name="mapName" id="mapName" class="input" placeholder="地图名(必填)"></textarea>
+<textarea name="author" id="author" class="input" placeholder="作者(必填)"></textarea>
+<textarea name="desc" id="desc" class="bigInput" placeholder="介绍"></textarea><br>
+<textarea name="usid" id="usid" class="hiddeninput" readonly></textarea><br>
+<a id="hiddentext">
+</a>
+<div class="text">
+<input class="checkbox" type="checkbox" id="survival" name="tags-1" value="survival">生
+<input class="checkbox" type="checkbox" id="attack" name="tags-2" value="attack">攻
+<input class="checkbox" type="checkbox" id="pvp" name="tags-3" value="pvp">P
+<input class="checkbox" type="checkbox" id="sandbox" name="tags-4" value="sandbox">沙
+<input class="checkbox" type="checkbox" id="editor" name="tags-8" value="editor">编
+<input class="checkbox" type="checkbox" id="va" name="tags-5" value="va">审
+<input class="checkbox" type="checkbox" id="jsmap" name="tags-11" value="jsmap">JS<br>
+<input class="checkbox" type="checkbox" id="nonstandard" name="tags-14" value="nonstandard">非
+<div style="width:110px;display:inline-block;"></div>
+<input type="checkbox" id="star" name="tags-6" value="star" onclick="return false" class="hiddeninput">
+<input class="checkbox" type="checkbox" id="starpre" name="tags-7" value="starpre">精
+<input type="checkbox" id="trash" name="tags-9" value="trash" onclick="return false" class="hiddeninput">
+<input class="checkbox" type="checkbox" id="trashpre" name="tags-10" value="trashpre">垃
+</div>
+<input class="input" name="adminid" placeholder="管理员id(修改精选用，可空)">
+<input class="submitButton" type="submit" value=" 提交" onClick="return cherk()">
+</form>
+
+<script>
+
+function cherk(){
+    return $("#author").val()!=""
+}
+try{
+let data=[data]
+//alert(data)
+$("#mapName").text(data.mapName).html()
+$("#name").text(data.name).html()
+$("#mapid").text(data.id).html()
+$("#author").text(data.author).html()
+$("#desc").text(data.desc).html()
+$("#usid").text(data.usid).html()
+if(data.tags==undefined) data.tags=[]
+$("#survival").prop("checked",data.tags.indexOf("survival")!=-1)
+$("#attack").prop("checked",data.tags.indexOf("attack")!=-1)
+$("#pvp").prop("checked",data.tags.indexOf("pvp")!=-1)
+$("#sandbox").prop("checked",data.tags.indexOf("sandbox")!=-1)
+$("#va").prop("checked",data.tags.indexOf("va")!=-1)
+$("#star").prop("checked",data.tags.indexOf("star")!=-1)
+$("#starpre").prop("checked",data.tags.indexOf("star")!=-1)
+$("#editor").prop("checked",data.tags.indexOf("editor")!=-1)
+$("#trash").prop("checked",data.tags.indexOf("trash")!=-1)
+$("#trashpre").prop("checked",data.tags.indexOf("trash")!=-1)
+$("#jsmap").prop("checked",data.tags.indexOf("jsmap")!=-1)
+$("#nonstandard").prop("checked",data.tags.indexOf("nonstandard")!=-1)
+}catch(e){
+alert(e)
+}
+
+</script>
+
+</body>
+</html>

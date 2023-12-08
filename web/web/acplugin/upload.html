@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>上传插件</title>
+<link href="/styles/index.css" rel="stylesheet">
+<link href="/styles/input.css" rel="stylesheet">
+<style>
+#alert{
+    color:#ff0000;
+    font-size:40px;
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="tab">
+    <div id="tabs">
+        <button class="button" onclick="javascript:location.assign('/acplugin/list.html')">  列表 </button>
+        <button class="selectedButton" onclick="javascript:location.assign('/acplugin/upload.html')">  上传 </button>
+    </div>
+</div><br>
+<!--
+<div class="box1">
+<a id="alert">禁止把地图站当网盘!</a><br>
+<img src="/禁止把地图站当网盘.jpg" style="width:360px">
+</div>
+-->
+<form id="form" action="/api/acplugin/upload" target="_self" method="post" enctype="multipart/form-data">
+<a class="input" class="text">
+ 文件:
+</a>
+<input name="file" class="childTab input" type="file" id="file">
+<br>
+<textarea name="pluginName" id="pluginName" class="input" placeholder="插件名(必填)"></textarea>
+<textarea name="author" id="author" class="input" placeholder="作者(必填)"></textarea>
+<textarea name="desc" id="desc" class="bigInput" placeholder="介绍"></textarea><br>
+<textarea name="usid" id="usid" class="input" placeholder="usid"></textarea><br>
+<gray class="text">
+usid请保存好，删除插件会使用
+</gray><br>
+<a class="text">
+<input class="checkbox" type="checkbox" name="tags-1" value="content">内容
+<input class="checkbox" type="checkbox" name="tags-2" value="style">样式
+</a>
+<input class="submitButton" type="submit" value=" 上传" onClick="return cherk()">
+</form>
+
+<script>
+function cherk(){
+    return $("#author")!=""&&$("#pluginName")!=""
+}
+</script>
+
+</body>
+</html>

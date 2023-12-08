@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>土豆日报</title>
+<link href="/styles/index.css" rel="stylesheet">
+<link href="./styles/input.css" rel="stylesheet">
+<script src="/scripts/jquery-3.6.0.min.js"></script>
+
+<script src="/scripts/news.js"></script>
+
+<style>
+</style>
+
+</head>
+<body>
+<div class="bg"></div>
+<div class="tab">
+    <div id="tabs">
+        <button class="button" onclick="javascript:location.assign('/index.html')">  主页 </button>
+        <button class="button" onclick="javascript:location.assign('/maps.html')">  地图列表 </button>
+        <button class="button" onclick="javascript:location.assign('/upload.html')">  上传地图 </button>
+        <button class="selectedButton" onclick="javascript:location.assign('/news.html')">  土豆日报 </button>
+        <button class="button" onclick="javascript:location.assign('/files/list.html')">  资源 </button>
+    </div>
+</div>
+<div class="childTab" styles="width:100%">
+<button class="button" style="width:49.5%" onclick="javascript:location.assign('/addNew.html')">  添加日报 </button>
+<button class="button" style="width:49.5%" onclick="javascript:location.assign('/admin/news.html')">  管理 </button>
+<div class="text" id="time"></div>
+</div>
+<div class="childTab">
+    <div styles="float:left;display:inline-block">
+        <input style="width:100vw;height:80px;font-size:55px;margin-bottom:0px;float:left;padding:0;outline:0" id="day" value="0"> 
+    </div>
+    <button class="button" style="width:30vw;margin-top:0px;" id="last" onclick="last()">上一天  </button> 
+    <button class="button" style="width:35vw;margin-top:0px" id="load" onclick="load()">  确定</button>
+    <button style="width:30vw;margin-top:0px" class="button" id="next" onclick="next()">  下一天</button> 
+</div><br>
+<div id="news"></div>
+</body>
+</html>

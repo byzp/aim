@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>添加日报</title>
+<link href="/styles/index.css" rel="stylesheet">
+<link href="/styles/input.css" rel="stylesheet">
+<script src="/scripts/jquery-3.6.0.min.js"></script>
+<style>
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div id="tabs">
+    <button class="button" onclick="javascript:window.history.back()">  返回 </button>
+</div>
+<div>
+<form id="form" class="childTab" action="/api/addNew" style="width:100%" target="_self" method="post">
+<textarea name="data" class="bigInput" placeholder="内容"></textarea><br>
+<textarea name="usid" id="usid" class="input" placeholder="发布者"></textarea><br>
+<input class="submitButton" type="submit" value=" 提交" onClick="return cherk()">
+</form>
+</div>
+<script>
+
+function cherk(){
+    return $("#usid").val()!=""
+}
+</script>
+
+</body>
+</html>

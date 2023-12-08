@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>更新插件信息</title>
+<link href="/styles/index.css" rel="stylesheet">
+<link href="/styles/input.css" rel="stylesheet">
+<script src="/scripts/jquery-3.6.0.min.js"></script>
+<style>
+.hiddeninput{
+    width:900px;
+    height:40px;
+    font-size:25px;
+    display:none;
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div id="tabs">
+    <button class="button" onclick="javascript:window.history.back()">  返回 </button>
+</div>
+<form id="form" class="childTab" action="/api/acplugin/update" target="_self" method="post" enctype="multipart/form-data">
+<a class="text"> id:<br><textarea class="input" id="id" name="id" readonly></textarea></a><br>
+<a class="text"> 文件名:<br><textarea class="input" id="name" name="name" readonly></textarea></a><br>
+<a class="input" class="text">
+ 新插件文件(可空):<br>
+</a>
+<input name="file" type="file" id="file" class="input">
+<br>
+<textarea name="pluginName" id="pluginName" class="input" placeholder="插件名(必填)"></textarea>
+<textarea name="author" id="author" class="input" placeholder="作者(必填)"></textarea>
+<textarea name="desc" id="desc" class="bigInput" placeholder="介绍"></textarea><br>
+<textarea name="usid" id="usid" class="hiddeninput" readonly></textarea><br>
+<a id="hiddentext">
+</a>
+<div class="text">
+<input id="content" class="checkbox" type="checkbox" name="tags-1" value="content">内容
+<input id="style" class="checkbox" type="checkbox" name="tags-2" value="style">样式
+</div>
+<input class="submitButton" type="submit" value=" 提交" onClick="return cherk()">
+</form>
+
+<script>
+
+function cherk(){
+    return $("#author").val()!=""&&$("#pluginName").val()!=""
+}
+try{
+let data=[data]
+//alert(data)
+$("#pluginName").val(data.pluginName)
+$("#name").text(data.name).html()
+$("#id").text(data.id).html()
+$("#author").text(data.author).html()
+$("#desc").text(data.desc).html()
+$("#usid").text(data.usid).html()
+if(data.tags==undefined) data.tags=[]
+$("#content").prop("checked",data.tags.indexOf("content")!=-1)
+$("#style").prop("checked",data.tags.indexOf("style")!=-1)
+}catch(e){
+alert(e)
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>地图列表</title>
+<link href="/styles/index.css" rel="stylesheet">
+<link href="./styles/input.css" rel="stylesheet">
+<script src="/scripts/jquery-3.6.0.min.js"></script>
+
+<script src="/scripts/maps.js"></script>
+
+<style>
+table{table-layout: fixed;}
+td{word-break: break-all; word-wrap:break-word;}
+.radio{
+    width:20px;
+    height:20px;
+}
+
+.but button{
+    width:100%;
+    height:100%;
+    font-size:10px;
+}
+
+.but{
+    height:50px;
+}
+
+.button.modeSelect{
+    width:15.5vw;
+    height:80px;
+}
+.selectedButton.modeSelect{
+    width:15.5vw;
+    height:80px;
+}
+
+</style>
+
+</head>
+<body>
+<div class="bg"></div>
+<div class="tab">
+    <div id="tabs">
+        <button class="button" onclick="javascript:location.assign('/index.html')">  主页 </button>
+        <button class="selectedButton" onclick="javascript:location.assign('/maps.html')">  地图列表 </button>
+        <button class="button" onclick="javascript:location.assign('/upload.html')">  上传地图 </button>
+        <button class="button" onclick="javascript:location.assign('/news.html')">  土豆日报 </button>
+        <button class="button" onclick="javascript:location.assign('/files/list.html')">  资源 </button>
+    </div>
+</div>
+<div class="childTab">
+<input id="usid" class="input" placeholder="usid"><br>
+<input id="search" class="input" style="width:80%" placeholder="搜索">
+<button style="width:18%;height:50px;font-size:30px;margin:0" onclick='load()'>  搜索</button>
+</div>
+<div class="text childTab">
+    <button class="selectedButton modeSelect" name="all" onclick="changeTo('all')">全部<br>(<a id="allAm"></a>)</button>
+    <button class="button modeSelect" name="star" onclick="changeTo('star')"><a style="color:gold">精选</a><br>(<a id="starAm"></a>)</button>
+    <button class="button modeSelect" name="va" onclick="changeTo('va')">审核<br>(<a id="vaAm"></a>)</button>
+    <button class="button modeSelect" name="notags" onclick="changeTo('notags')">无标签<br>(<a id="notagsAm"></a>)</button>
+    <button class="button modeSelect" name="trash" onclick="changeTo('trash')">垃圾箱<br>(<a id="trashAm"></a>)</button>
+    <button class="button modeSelect" name="nonstandard" onclick="changeTo('nonstandard')">非标准<br>(<a id="nonstandardAm"></a>)</button><br>
+    <button class="button modeSelect" name="survival" onclick="changeTo('survival')">生存<br>(<a id="survivalAm"></a>)</button>
+    <button class="button modeSelect" name="attack" onclick="changeTo('attack')">攻击<br>(<a id="attackAm"></a>)</button>
+    <button class="button modeSelect" name="pvp" onclick="changeTo('pvp')">pvp<br>(<a id="pvpAm"></a>)</button>
+    <button class="button modeSelect" name="sandbox" onclick="changeTo('sandbox')">沙盒<br>(<a id="sandboxAm"></a>)</button>
+    <button class="button modeSelect" name="editor" onclick="changeTo('editor')" styles="width:25vw">编辑器<br>(<a id="editorAm"></a>)</button>
+    <button class="button modeSelect" name="jsmap" onclick="changeTo('jsmap')"> JS图<br>(<a id="jsAm"></a>)</button>
+</div>
+<div id="table" class="childTab">
+按"搜索"来开始加载
+</div>
+</body>
+</html>

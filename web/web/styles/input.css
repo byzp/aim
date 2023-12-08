@@ -1,0 +1,69 @@
+.input{
+    width:100%;
+    height:50px;
+    font-size:25px;
+    marign:0 0 0 0;
+}
+
+.bigInput{
+    width:100%;
+    height:400px;
+    font-size:25px;
+    marign:0 0 0 0;
+}
+
+.submitButton{
+    width:100%;
+    height:60px;
+    font-size:40px;
+}
+
+.text{
+    font-size:25px;
+}
+
+.checkbox{
+    width:55px;
+    height:35px;
+}
+
+.checkbox::after{
+    width:100%;
+    height:100%;
+    background-color:#333333;
+    border-color:3px #444444 solid;
+    border-radius:3px;
+    color:#444444;
+    content:"[-]";
+    font-size:35px;
+}
+
+.checkbox:checked:after{
+    color:#aaaaaa;
+    content:"[X]"
+}
+
+.radio{
+    width:30px;
+    height:20px;
+}
+
+.radio::after{
+    width:100%;
+    height:100%;
+    background-color:#333333;
+    border-color:3px #444444 solid;
+    border-radius:3px;
+    color:#444444;
+    content:"[O]";
+    font-size:20px;
+}
+
+.radio:checked:after{
+    color:#aaaaaa;
+    content:"[X]"
+}
+
+gray{
+    color:gray;
+}

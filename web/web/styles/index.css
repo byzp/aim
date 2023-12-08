@@ -1,0 +1,130 @@
+/*
+body{
+    background-image:url("https://api.ixiaowai.cn/api/api.php");
+    background-repeat:repeat;
+    width:100%;
+}
+*/
+.bg{
+    position:absolute;
+    top:0;
+    left:0;
+    opacity:0.5;
+    height:100%;
+    width:100%;
+    background-color:#000000;
+    z-index:-1;
+    position:fixed;
+}
+/*
+@font-face{
+    font-family:"font11";
+    src:url("/font.woff");
+}
+*/
+@font-face{
+    font-family:"font12";
+    src:url("/icon.ttf");
+}
+*{
+    font-family:font11,font12;
+    color:#fff;
+    /*background-color:#333333;*/
+    rgba:ffffffcc;
+}
+
+button{
+    border: 5px #666666 solid;
+    border-radius: 5px;
+    background-color:#444444;
+    cursor:pointer;
+}
+
+.button{
+    width:150px;
+    height:80px;
+    background-color:#333333;
+    font-size:30px;
+    
+}
+
+#tabs .button{
+    width:19.5%;
+    height:80px;
+    background-color:#333333;
+    font-size:28px;
+    
+}
+
+button:focus{
+    border: 5px gold solid;
+}
+
+.selectedButton{
+    width:160px;
+    height:100px;
+    background-color: #333333;
+    border: 5px gold solid;
+    border-radius: 5px;
+    font-size:32px;
+}
+
+#tabs .selectedButton{
+    width:19.5%;
+    height:80px;
+    background-color: #333333;
+    border: 5px gold solid;
+    border-radius: 5px;
+    font-size:30px;
+}
+
+
+.tab{
+    background-color:rgba(0,0,0,0.6);
+    width: 100%;
+    height:100px;
+    padding:0 0 0 0;
+}
+.childTab{
+    background-color:rgba(0,0,0,0.5);
+    width: 100%;
+    padding:0 0 0 0;
+}
+.box1{
+    ackground-color:rgba(0,0,0,0.3);
+    margin: 10px 0;
+    padding: 10px 0 17px 0;
+    border-top: 2px orange solid;
+    border-bottom: 2px orange solid;
+}
+.limLine{
+    ackground-color:rgba(0,0,0,0.3);
+    border-top: 2px orange solid;
+    margin: 2px 0;
+    padding: 2px 0 3px 0;
+}
+main{
+    max-width: 100%;
+    height: 100px;
+    ackground-color:rgba(0,0,0,0.6);
+}
+#tabs{
+    width: 100%;
+    height:100px;
+    padding:0 0 0 0;
+    margin:auto;
+    background-color:rgba(0,0,0,0);
+}
+#a1{
+    font-size: 30px;
+}
+
+input,textarea{
+    background-color:#333333;
+    border: 5px #666666 solid;
+    border-radius: 5px;
+    background-color:#444444;
+}
+input:focus,textarea:focus{
+    caret-color:orange;
+}

@@ -1,0 +1,126 @@
+var type="all"
+
+var colors={"aliceblue":"#f0f8ff","antiquewhite":"#faebd7","aqua":"#00ffff","aquamarine":"#7fffd4","azure":"#f0ffff","beige":"#f5f5dc","bisque":"#ffe4c4","black":"#000000","blanchedalmond":"#ffebcd","blue":"#0000ff","blueviolet":"#8a2be2","brown":"#a52a2a","burlywood":"#deb887","cadetblue":"#5f9ea0","chartreuse":"#7fff00","chocolate":"#d2691e","coral":"#ff7f50","cornflowerblue":"#6495ed","cornsilk":"#fff8dc","crimson":"#dc143c","cyan":"#00ffff","darkblue":"#00008b","darkcyan":"#008b8b","darkgoldenrod":"#b8860b","darkgray":"#a9a9a9","darkgreen":"#006400","darkgrey":"#a9a9a9","darkkhaki":"#bdb76b","darkmagenta":"#8b008b","darkolivegreen":"#556b2f","darkorange":"#ff8c00","darkorchid":"#9932cc","darkred":"#8b0000","darksalmon":"#e9967a","darkseagreen":"#8fbc8f","darkslateblue":"#483d8b","darkslategray":"#2f4f4f","darkslategrey":"#2f4f4f","darkturquoise":"#00ced1","darkviolet":"#9400d3","deeppink":"#ff1493","deepskyblue":"#00bfff","dimgray":"#696969","dimgrey":"#696969","dodgerblue":"#1e90ff","firebrick":"#b22222","floralwhite":"#fffaf0","forestgreen":"#228b22","fuchsia":"#ff00ff","gainsboro":"#dcdcdc","ghostwhite":"#f8f8ff","gold":"#ffd700","goldenrod":"#daa520","gray":"#808080","green":"#008000","greenyellow":"#adff2f","grey":"#808080","honeydew":"#f0fff0","hotpink":"#ff69b4","indianred":"#cd5c5c","indigo":"#4b0082","ivory":"#fffff0","khaki":"#f0e68c","lavender":"#e6e6fa","lavenderblush":"#fff0f5","lawngreen":"#7cfc00","lemonchiffon":"#fffacd","lightblue":"#add8e6","lightcoral":"#f08080","lightcyan":"#e0ffff","lightgoldenrodyellow":"#fafad2","lightgray":"#d3d3d3","lightgreen":"#90ee90","lightgrey":"#d3d3d3","lightpink":"#ffb6c1","lightsalmon":"#ffa07a","lightseagreen":"#20b2aa","lightskyblue":"#87cefa","lightslategray":"#778899","lightslategrey":"#778899","lightsteelblue":"#b0c4de","lightyellow":"#ffffe0","lime":"#00ff00","limegreen":"#32cd32","linen":"#faf0e6","magenta":"#ff00ff","maroon":"#800000","mediumaquamarine":"#66cdaa","mediumblue":"#0000cd","mediumorchid":"#ba55d3","mediumpurple":"#9370db","mediumseagreen":"#3cb371","mediumslateblue":"#7b68ee","mediumspringgreen":"#00fa9a","mediumturquoise":"#48d1cc","mediumvioletred":"#c71585","midnightblue":"#191970","mintcream":"#f5fffa","mistyrose":"#ffe4e1","moccasin":"#ffe4b5","navajowhite":"#ffdead","navy":"#000080","oldlace":"#fdf5e6","olive":"#808000","olivedrab":"#6b8e23","orange":"#ffa500","orangered":"#ff4500","orchid":"#da70d6","palegoldenrod":"#eee8aa","palegreen":"#98fb98","paleturquoise":"#afeeee","palevioletred":"#db7093","papayawhip":"#ffefd5","peachpuff":"#ffdab9","peru":"#cd853f","pink":"#ffc0cb","plum":"#dda0dd","powderblue":"#b0e0e6","purple":"#800080","red":"#ff0000","rosybrown":"#bc8f8f","royalblue":"#4169e1","saddlebrown":"#8b4513","salmon":"#fa8072","sandybrown":"#f4a460","seagreen":"#2e8b57","seashell":"#fff5ee","sienna":"#a0522d","silver":"#c0c0c0","skyblue":"#87ceeb","slateblue":"#6a5acd","slategray":"#708090","slategrey":"#708090","snow":"#fffafa","springgreen":"#00ff7f","steelblue":"#4682b4","tan":"#d2b48c","teal":"#008080","thistle":"#d8bfd8","tomato":"#ff6347","turquoise":"#40e0d0","violet":"#ee82ee","wheat":"#f5deb3","white":"#ffffff","whitesmoke":"#f5f5f5","yellow":"#ffff00","yellowgreen":"#9acd32"};
+function decodeColor(str){
+    for(let s in colors){
+        str=str.replace(new RegExp("\\["+s+"\\]","g"),"["+colors[s]+"]");
+    }
+    str=str.replace(/\[#[0-9a-fA-F]{1,8}\]/g,(s)=>{
+        return "<a style='color:"+s.replace("[#","").replace("]","")+"'>";
+    });
+    return str.replace(/\n/g,"<br>");
+}
+
+function load(){
+    $("#table").empty()
+    $("#table").append("加载中...")
+    $.ajax({
+        url:"/api/maps",
+        type:"get",
+        dataType:"json",
+        success:function(obj){
+            let all=0;
+            let survival=0;
+            let attack=0;
+            let pvp=0;
+            let sandbox=0;
+            let va=0;
+            let star=0;
+            let editor=0;
+            let notags=0;
+            let trash=0;
+            let jsmap=0
+            let nonstandard=0;
+            for(let map of obj){
+                all++;
+                if(map.tags==undefined) map.tags=[]
+                if(map.tags.indexOf("trash")!=-1){
+                    trash++
+                }
+                if(map.tags.indexOf("survival")!=-1) survival++
+                if(map.tags.indexOf("attack")!=-1) attack++
+                if(map.tags.indexOf("pvp")!=-1) pvp++
+                if(map.tags.indexOf("sandbox")!=-1) sandbox++
+                if(map.tags.indexOf("va")!=-1) va++
+                if(map.tags.indexOf("star")!=-1) star++
+                if(map.tags.indexOf("editor")!=-1) editor++
+                if(map.tags.indexOf("jsmap")!=-1) jsmap++
+                if(map.tags.indexOf("nonstandard")!=-1) nonstandard++
+                if(map.tags.indexOf("editor")==-1&&map.tags.indexOf("survival")==-1&&map.tags.indexOf("attack")==-1&&map.tags.indexOf("pvp")==-1&&map.tags.indexOf("sandbox")==-1) notags++
+            }
+            $("#allAm").empty()
+            $("#allAm").append(all)
+            $("#survivalAm").empty()
+            $("#survivalAm").append(survival)
+            $("#attackAm").empty()
+            $("#attackAm").append(attack)
+            $("#pvpAm").empty()
+            $("#pvpAm").append(pvp)
+            $("#sandboxAm").empty()
+            $("#sandboxAm").append(sandbox)
+            $("#vaAm").empty()
+            $("#vaAm").append(va)
+            $("#starAm").empty()
+            $("#starAm").append(star)
+            $("#editorAm").empty()
+            $("#editorAm").append(editor)
+            $("#notagsAm").empty()
+            $("#notagsAm").append(notags)
+            $("#trashAm").empty()
+            $("#trashAm").append(trash)
+            $("#jsAm").empty()
+            $("#jsAm").append(jsmap)
+            $("#nonstandardAm").empty()
+            $("#nonstandardAm").append(nonstandard)
+            let code="<table style='width:100%' border='2'><tr> <th style='width:9%'> id</th> <th style='width:10%'> 文件名</th> <th style='width:18%'> 地图名</th> <th style='width:10%'> 作者</th> <th style='width:35%'> 介绍</th> <th> 删除</th> <th> 下载</th> <th> 更新</th> </tr>";
+            let word=$("#search").val();
+            //alert(word)
+            for(let map of obj){
+                if(map.tags==undefined) map.tags=[]
+                if(type!="all"&&map.tags.indexOf(type)==-1&&type!="notags") continue
+                if((!(map.tags.indexOf("editor")==-1&&map.tags.indexOf("survival")==-1&&map.tags.indexOf("attack")==-1&&map.tags.indexOf("pvp")==-1&&map.tags.indexOf("sandbox")==-1))&&type=="notags") continue
+                if(!map.mapName) map.mapName=map.name
+                if(map.name.replace(".msav","").indexOf(word)==-1&&map.mapName.indexOf(word)==-1&&map.desc.indexOf(word)==-1&&(map.id+"").indexOf(word)==-1&&map.author.indexOf(word)==-1&&word!="") continue;
+                if(map.tags.indexOf("survival")!=-1&&type!="survival") map.mapName="[ 生存]"+map.mapName
+                if(map.tags.indexOf("attack")!=-1&&type!="attack") map.mapName="[ 攻击]"+map.mapName
+                if(map.tags.indexOf("pvp")!=-1&&type!="pvp") map.mapName="[ PVP]"+map.mapName
+                if(map.tags.indexOf("sandbox")!=-1&&type!="sandbox") map.mapName="[ 沙盒]"+map.mapName
+                if(map.tags.indexOf("editor")!=-1&&type!="editor") map.mapName="[ 编辑器]"+map.mapName
+                if(map.tags.indexOf("jsmap")!=-1&&type!="jsmap") map.mapName="[ JS地图]"+map.mapName
+                if(map.tags.indexOf("nonstandard")!=-1&&type!="nonstandard") map.mapName="[cyan][ 非标准][white]"+map.mapName
+                if(map.tags.indexOf("trash")!=-1&&type!="trash") map.mapName="<a style='color:#ff0000'>[ 垃圾箱]</a>"+map.mapName
+                if(map.tags.indexOf("star")!=-1&&type!="star") map.mapName="<a style='color:gold'>[ 精选]</a>"+map.mapName
+                code+="<tr>"
+                code+="<td style='width:10%'>"+map.id+"</td>"
+                code+="<td style='width:10%'>"+map.name+"</td>"
+                code+="<td style='width:20%'>"+decodeColor(map.mapName)+"</td>"
+                code+="<td style='width:10%'>"+decodeColor(map.author)+"</td>"
+                code+="<td style='width:35%'>"+decodeColor(map.desc)+"</td>"
+                code+="<td class='but'><button style='width:100%;font-size:100%' onclick='var usid=$(\"#usid\").val();location.assign(\"/api/delete?usid=\"+usid+\"&name="+encodeURIComponent(map.name)+"\");load()'></button>"+"</td>"
+                code+="<td class='but'><button style='width:100%;font-size:100%' onclick='javascript:location.assign(\"/api/download/"+encodeURIComponent(map.name)+"?name="+encodeURIComponent(map.name)+"\")'></button></td>"
+                code+="<td class='but'><button style='width:100%;font-size:100%' onclick='var usid=$(\"#usid\").val();location.assign(\"/update?usid=\"+usid+\"&name="+encodeURIComponent(map.name)+"\");load()'></button>"+"</td></tr>"
+            }
+            code+="</table>"
+            //code+="<textarea>"+code+"</textarea>"
+            $("#table").empty()
+            $("#table").append(code);
+        },
+        error:function(err){
+            $("#table").empty()
+            $("#table").append("加载失败:"+err);
+        }
+    })
+}
+window.onload=load;
+
+function changeTo(ty){
+    type=ty;
+    $(".modeSelect").attr("class","button modeSelect");
+    $(".modeSelect[name="+ty+"]").attr("class","selectedButton modeSelect");
+    load();
+}
+
+function dele(name){
+    var usid=document.getElementById("usid").innerHTML;
+    location.assign("/api/delete?usid="+usid+"&name="+name)
+}
