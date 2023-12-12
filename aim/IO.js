@@ -384,6 +384,29 @@ Aim.io.copy = function(path, toPath) {
  */
 //适用于java8
 //在Java 9及更高版本中，模块化系统要求明确声明模块之间的依赖关系。
+Aim.io.download = function(url, path) {
+    let file = new java.io.File(path);
+    if (file.exists()) {
+        file.delete();
+    }
+    file.createNewFile();
+    let fos = new java.io.FileOutputStream(file);
+    let urlClass = java.lang.Class.forName("java.net.URL");
+    let urlConnectionClass = java.lang.Class.forName("java.net.URLConnection");
+    let openConnectionMethod = urlClass.getDeclaredMethod("openConnection");
+    let connection = openConnectionMethod.invoke(new java.net.URL(url));
+    let getInputStreamMethod = urlConnectionClass.getDeclaredMethod("getInputStream");
+    let bis = new java.io.BufferedInputStream(getInputStreamMethod.invoke(connection));
+    let bos = new java.io.BufferedOutputStream(fos);
+    let buffer = java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, 1024);
+    let length;
+    while ((length = bis.read(buffer)) != -1) {
+        bos.write(buffer, 0, length);
+    }
+    bos.close();
+    bis.close();
+    fos.close();
+}
 /*
 Aim.io.download=function(url,path){
     let file=new java.io.File(path);
@@ -404,11 +427,13 @@ Aim.io.download=function(url,path){
     bis.close();
     fos.close();
 }*/
+/*
 Aim.io.download = function(url, path) {
     var cmd = "curl -o " + path + " " + url;
     var Runtime = java.lang.Runtime;
     var proc = Runtime.getRuntime().exec(cmd);
-/*
+    */
+    /*
     var BufferedReader = java.io.BufferedReader;
     var InputStreamReader = java.io.InputStreamReader;
 
@@ -423,7 +448,7 @@ Aim.io.download = function(url, path) {
 
     bufferedReader.close();
     */
-}
+//}
 
 /**
  * 

@@ -338,7 +338,7 @@ Aim.event.playerLeave = (e) => {
             func(e.player)
         }
     }
-    log(getID(uuid))
+    //log(getID(uuid))
     delete Aim.players[getID(uuid)];
     
 }
