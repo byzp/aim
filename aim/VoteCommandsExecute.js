@@ -2,7 +2,7 @@
 
 Aim.voteCommands["restart"] = {
     func: (p, t, m) => {
-        say("[red]服务器将在5秒后重启");
+        say("[red]The server will restart in 5 seconds.");
         Aim.saveData();
         Timer.schedule(() => {
             java.lang.System.exit(0)
@@ -259,7 +259,7 @@ Aim.voteCommands["kick"] = {
             Aim.data.blacklist[pl.uuid()] = {
                 bantime: Date.now(),
                 unbantime: Date.now() + (Aim.data.config.kickTime * 60 * 1000),
-                reason: "$kicked",
+                reason: t[2],
                 admin: admin,
                 name: pl.name
             }

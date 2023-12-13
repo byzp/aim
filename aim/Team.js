@@ -196,11 +196,13 @@ Aim.commands[";ct"]={
 
 Aim.commands[";l"]={
     func:(p,t,m)=>{
-        if(Aim.state.teams.teams[p.team().id].locked){
-            p.sendMessage("队伍已被锁定");
+        let i=p.team().id;
+        if(Aim.state.teams.teams[i].locked){
+            p.sendMessage(bundle(p,"teamlocked",i));
             return;
         }
-        Aim.vote.add("$lockteam "+p.team().id+"  \n"+p.team()+" "+p.name.replace(/\[.*?\]/g,""),p)
+        Aim.vote.add("$lockteam "+i+"  \n"+p.team()+" "+p.name.replace(/\[.*?\]/g,""),p)
+        
     },
     args:"",
     desc:"$aim.command.lockteam.desc",
@@ -208,11 +210,12 @@ Aim.commands[";l"]={
 }
 Aim.commands[";ul"]={
     func:(p,t,m)=>{
-        if(!Aim.state.teams.teams[p.team().id].locked){
-            p.sendMessage("队伍未锁定");
+        let i=p.team().id;
+        if(!Aim.state.teams.teams[i].locked){
+            p.sendMessage(bundle(p,"teamunlocked",i));
             return;
         }
-        Aim.vote.add("$unlockteam "+p.team().id+"  \n"+p.team()+" "+p.name.replace(/\[.*?\]/g,""),p)
+        Aim.vote.add("$unlockteam "+ i +"  \n"+p.team()+" "+p.name.replace(/\[.*?\]/g,""),p)
     },
     args:"",
     desc:"$aim.command.unlockteam.desc",

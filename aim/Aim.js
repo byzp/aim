@@ -157,19 +157,25 @@ const errLog=(source,info)=>{
 		Log.log(Log.LogLevel.err,"@",source)
 	}
 }
-
 /*
-const getPlayer=(p)=>{
-	return Aim.players[p]!=undefined?Aim.players[p]:(()=>{
-		return Groups.player.find(pla=>pla.name==p)
-	})
-}
-*/
 var getPlayer=(player)=>{
     //id or name
 	return Aim.players[player]!=undefined ? Aim.players[player] : (()=>{
 		return Groups.player.find(pla=>pla.name==player)
 	})()
+}
+*/
+var getPlayer=(player)=>{
+    //id or real name
+	if(Aim.players[player]!=undefined){
+	    return Aim.players[player];
+	}
+	for(let i in Aim.players){
+	    if(Aim.players[i].name=="[#B0E0E6]" + i + "[white] | " + player + "[white]"){
+	        return Aim.players[i];
+	    }
+	}
+	return undefined;
 }
 
 const say=function(m){

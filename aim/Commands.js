@@ -150,7 +150,7 @@ Aim.commands[";"]={
             }
         })
         let listFn=function(p){
-            Call.menu(p.con,menuId,"","快捷指令",selects);
+            Call.menu(p.con,menuId,"",bundle(p,"quickCommands"),selects);
         }
         listFn(p);
     },

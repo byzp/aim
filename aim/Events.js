@@ -264,7 +264,8 @@ Aim.event.playerJoin = (e) => {
     let p = e.player
     //Aim.players[p.uuid().substring(0, 3)] = p
     let ID=initID(p);
-    p.name = "[#B0E0E6]" +ID + "[white] | " + p.name + "[white]"
+    // !!! Aim.js -> function getPlayer
+    p.name = "[#B0E0E6]" +ID + "[white] | " + p.name + "[white]";
     /*
     Timer.schedule(()=>{
     	Call.sendMessage("[[[green]+[white]] "+p.name)
