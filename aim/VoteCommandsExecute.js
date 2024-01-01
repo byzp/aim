@@ -190,13 +190,6 @@ Aim.voteCommands["load"] = {
         //Aim.io.copy("config/saves/"+name+".msav","config/maps/"+name+".msav")
         //infoLog("load-0")
         let aimSave = eval("({" + Aim.defaultState + "})")
-        if (Aim.io.exists("config/saves/" + name + ".aimSave")) {
-            try {
-                aimSave = eval("(" + Aim.io.readSync("config/saves/" + name + ".aimSave") + ")")
-            } catch (e) {
-                print(e)
-            }
-        }
         //infoLog("load-1")
         //Vars.maps.reload()
         //infoLog("load-2")
@@ -223,6 +216,16 @@ Aim.voteCommands["load"] = {
             Vars.maps.reload()
             Vars.state.rules.canGameOver = cg;
             Aim.event.worldLoadOver();
+            if (Aim.io.exists("config/saves/" + name + ".aimSave")) {
+                try {
+                    aimSave = eval("(" + Aim.io.readSync("config/saves/" + name + ".aimSave") + ")");
+                } catch (e) {
+                    print(e);
+                    return;
+                }
+            }else{
+                return;
+            }
             Aim.state = aimSave;
             for (let teamid in Aim.state.resources) {
                 try {
