@@ -30,6 +30,7 @@ Aim.skillCommands={}
 Aim.addon={}
 Aim.addon.configs={}
 Aim.addon.datas={}
+Aim.pause=false
 
 Aim.mapUrl="http://127.0.0.1:7002"
 

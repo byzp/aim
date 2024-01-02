@@ -6,7 +6,7 @@ Aim.commands[";aimver"]={
     func:function(p,t,m) {
         p.sendMessage("aim "+Aim.version+"\nbuild"+Aim.build+"\nby awa(LSP237198162@163.com)\naaa改版，https://github.com/byzp/aim")
     },
-    args:"",
+    args:"$null",
     desc:"show aim version",
     show:false
 }
@@ -20,8 +20,8 @@ Aim.commands[";mapinfo"]={
         mess+="desc:"+Vars.state.map.description();
         Call.infoMessage(p.con,mess);
     },
-    args:"",
-    desc:"",
+    args:"$null",
+    desc:"$null",
     show:false
 }
 
@@ -96,7 +96,7 @@ Aim.commands[";help"]={
         */
         Aim.op.textList(p,page,0);
     },
-    args:"",
+    args:"$null",
     desc:"$aim.command.help.desc",
     show:true
 }
@@ -112,6 +112,7 @@ Aim.commands[";"]={
             [bundle(p,"aim.command.changeteam.desc")],
             [bundle(p,"aim.command.help.desc")],
             [bundle(p,"aim.command.maps.desc")],
+            [bundle(p,"aim.command.pause.desc")],
             [bundle(p,"close")]
         ];
         let menuId=Menus.registerMenu((p,select)=>{
@@ -146,6 +147,10 @@ Aim.commands[";"]={
                 return;
             }
             if(select==7){
+                Aim.commands[";pause"].func(p,"","");
+                return;
+            }
+            if(select==8){
                 return;
             }
         })
@@ -154,8 +159,8 @@ Aim.commands[";"]={
         }
         listFn(p);
     },
-    args:"",
-    desc:" ",
+    args:"$null",
+    desc:"$quickCommands",
     show:false
 }
 //Aim.commands[";；"]=Aim.commands[";help"];
@@ -179,7 +184,7 @@ Aim.commands[";lang"]={
         }*/
         Aim.op.chooseLang(p)
     },
-    args:"",
+    args:"$null",
     desc:" set your lang",
     show:false
 }
@@ -199,7 +204,7 @@ Aim.commands[";info"]={
         }
         Call.infoMessage(p.con,mess)
     },
-    args:"",
+    args:"$null",
     desc:"$playerInfo",
     show:false
 }
@@ -304,7 +309,7 @@ Aim.commands[";maps"]={
            // p.sendMessage("$aim.error.mapUrl");
         //}
     },
-    args:"",
+    args:"$null",
     desc:"$aim.command.maps.desc",
     show:true,
     firstPage:null
@@ -336,7 +341,7 @@ Aim.commands[";slots"]={
         */
         Aim.op.textList(p,mess,0);
     },
-    args:"",
+    args:"$null",
     desc:"$aim.command.slots.desc",
     show:true
 }
@@ -385,7 +390,7 @@ Aim.commands[";blacklist"]={
         */
         Aim.op.textList(p,mess,0);
     },
-    args:"",
+    args:"$null",
     desc:"$aim.command.blacklist.desc",
     show:false
 }
@@ -410,7 +415,7 @@ Aim.commands[";broad"]={
         data.broad=!data.broad
         
     },
-    args:"",
+    args:"$null",
     desc:"$aim.command.broad.desc",
     show:true
 }
@@ -420,7 +425,7 @@ Aim.commands[";health"]={
         let data=Aim.data.getData(p)
         data.health=!data.health
     },
-    args:"",
+    args:"$null",
     desc:"$aim.command.health.desc",
     show:true
 }
@@ -430,7 +435,7 @@ Aim.commands[";oldMode"]={
         let data=Aim.data.getData(p)
         data.oldMode=!data.oldMode
     },
-    args:"",
+    args:"$null",
     desc:" ; -> * ",
     show:false
 }
@@ -440,7 +445,7 @@ Aim.commands[";votemenu"]={
         let data=Aim.data.getData(p)
         data.voteMenu=!data.voteMenu
     },
-    args:"",
+    args:"$null",
     desc:"$aim.command.votemenu.desc",
     show:true
 }
@@ -451,7 +456,7 @@ Aim.commands[";history"]={
         if(data.history==undefined) data.history=true
         data.history=!data.history
     },
-    args:"",
+    args:"$null",
     desc:"$aim.command.history.desc",
     show:true
 }
@@ -494,7 +499,7 @@ Aim.commands[";rank"]={
             Call.infoMessage(p.con,mess)
         }
     },
-    args:"",
+    args:"$null",
     desc:"rank",
     show:false
 }
@@ -517,7 +522,7 @@ Aim.commands[";modes"]={
         if(x!="") page.push(x)
         Aim.op.textList(p,page,0)
     },
-    args:"",
+    args:"$null",
     desc:"$aim.command.modes.desc",
     show:false
 }

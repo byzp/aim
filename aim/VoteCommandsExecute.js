@@ -14,6 +14,22 @@ Aim.voteCommands["restart"] = {
     }
 }
 
+Aim.voteCommands["pause"] = {
+    func: (p, t, m) => {
+        if(Aim.pause==true){
+            Vars.state.set(Packages.mindustry.core.GameState.State.playing)
+            Aim.pause=false
+        }else{
+            Vars.state.set(Packages.mindustry.core.GameState.State.paused)
+            Aim.pause=true
+        }
+    },
+    a: true,
+    canVote: (p, cp, t, m) => {
+        return true;
+    }
+}
+
 Aim.voteCommands["host"] = {
     func: (p, t, m) => {
         let ma = t[1]

@@ -4,12 +4,24 @@ Aim.commands[";restart"]={
     func:(p,t,ma)=>{
         Aim.vote.add("$restart",p)
     },
-    args:"$aim.command.restart.desc",
+    args:"$null",
     desc:"$aim.command.restart.desc",
     show:true,
     vote:true,
     muteable:true
 }
+
+Aim.commands[";pause"]={
+    func:(p,t,m)=>{
+        Aim.vote.add("$pause",p)
+    },
+    args:"$null",
+    desc:"$aim.command.pause.desc",
+    show:true,
+    vote:true,
+    muteable:true
+}
+
 Aim.commands[";host"]={
     func:(p,t,m)=>{
         let ma=t[1]
@@ -49,7 +61,7 @@ Aim.commands[";rtv"]={
     func:(p,t,ma)=>{
         Aim.vote.add("$rtv",p)
     },
-    args:"$aim.command.rtv.args",
+    args:"$null",
     desc:"$aim.command.rtv.desc",
     show:true,
     vote:true,
@@ -60,7 +72,7 @@ Aim.commands[";gameover"]={
     func:(p,t,m)=>{
         Aim.vote.add("$gameover "+p.team().id+"  \n"+p.team()+" "+p.name.replace(/\[.*?\]/g,""),p)
     },
-    args:"",
+    args:"$null",
     desc:"$aim.command.gameover.desc",
     show:true,
     vote:true,
@@ -131,7 +143,7 @@ Aim.commands[";killall"]={
         }
         Aim.vote.add("$"+m.substring(1,m.length),p)
     },
-    args:"",
+    args:"$null",
     desc:"$aim.command.killall.desc",
     show:true,
     vote:true,
@@ -264,7 +276,7 @@ Aim.commands[";rmute"]={
         */
         Aim.vote.add("$rmute "+getID(p.uuid()),p)
     },
-    args:"$aim.command.rmute.args",
+    args:"$null",
     desc:"$aim.command.rmute.desc",
     show:true,
     vote:true
@@ -290,7 +302,7 @@ Aim.commands[";rob"]={
     func:(p,t,m)=>{
         Aim.vote.add("$rob "+getID(p.uuid()),p)
     },
-    args:"$aim.command.rob.args",
+    args:"$null",
     desc:"$aim.command.rob.desc",
     show:true,
     vote:true
