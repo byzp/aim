@@ -186,7 +186,9 @@ Aim.voteCommands["gameover"] = {
 Aim.voteCommands["load"] = {
     func: (p, t, m) => {
         let name = t[1]
-        if (!Aim.io.exists("config/saves/" + name + ".msav")) return;
+        if (!Aim.io.exists("config/saves/" + name + ".msav")){
+            return;
+        }
         //Aim.io.copy("config/saves/"+name+".msav","config/maps/"+name+".msav")
         //infoLog("load-0")
         let aimSave = eval("({" + Aim.defaultState + "})")

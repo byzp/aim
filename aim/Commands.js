@@ -318,7 +318,7 @@ Aim.commands[";slots"]={
         let me=""
         for(let name of Aim.io.ls("config/saves/")){
             if(name.endsWith(".msav")){
-                me+=name.replace(".msav","")+"[white]\n"
+                me+="[#ffccff]"+id+"[white]"+name.replace(".msav","")+"[white]\n"
                 id++
                 i++
                 if(i>8){

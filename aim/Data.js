@@ -85,7 +85,7 @@ Aim.saveData=function(){
 		Aim.io.ls("datas/aim").forEach(fname=>{
 			if(fname=="backups") return;
 			Aim.io.copy("datas/aim/"+fname,path+"/"+fname);
-			Call.sendMessage("backup file: "+fname);
+			//Call.sendMessage("backup file: "+fname);
 			Log.log(Log.LogLevel.info,"backup file: @",fname)
 		})
 	}

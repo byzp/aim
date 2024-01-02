@@ -135,7 +135,6 @@ Aim.event.requires.update1.push(()=>{
                 x=x.replace(/\[blue\]/g,"\ufeee")
                 x=x.replace(/\[gold\]/g,"\ufeef")
                 
-                m+=x
                 /*
                 if(x!=""){
                     m+=x;
@@ -150,18 +149,15 @@ Aim.event.requires.update1.push(()=>{
                             ite+=14;
                         }
                 */
-                /*
+                
                 while(x!=""){
                     if(x.length<=14){
                         m+=x;
                         break;
                     }
-                    */
-                    /*
                     m+=x.substring(0,14)+"\n"
                     x=x.substring(14,x.length)
-                    */
-                //}
+                }
             }
         }
         

@@ -70,9 +70,23 @@ Aim.commands[";gameover"]={
 Aim.commands[";load"]={
     func:(p,t,m)=>{
         let name=m.substring(6,m.length).replace(/ /g,"_")
-        if(Aim.io.exists("config/saves/"+name+".msav")){
-            Aim.vote.add("$load "+name,p)
+        if(!Aim.io.exists("config/saves/"+name+".msav")){
+            let i=0;
+            for(let id of Aim.io.ls("config/saves/")){
+                if(name==i){
+                    if(id.endsWith(".msav")){
+                        Aim.vote.add("$load "+id.substring(0,id.length-5),p)
+                        return;
+                    }
+                }
+                if(id.endsWith(".msav")){
+                    i++;
+                }
+            }
+            p.sendMessage(bundle(p, "unknownMap", t[1]));
+            return;
         }
+        Aim.vote.add("$load "+name,p)
     },
     args:"$aim.command.load.args",
     desc:"$aim.command.load.desc",
