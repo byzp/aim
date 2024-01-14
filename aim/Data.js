@@ -78,17 +78,19 @@ Aim.saveData=function(){
 	let time=new Date();
 	time="backup--"+time.getFullYear()+"-"+time.getMonth()+"-"+time.getDate();
 	let path="datas/aim/backups/"+time;
-	if(!Aim.io.isDir(path)){
-	    //Call.sendMessage("begin backup data: "+time)
-		Log.log(Log.LogLevel.info,"begin backup data: @",time)
-		Aim.io.mkdir(path);
-		Aim.io.ls("datas/aim").forEach(fname=>{
-			if(fname=="backups") return;
-			Aim.io.copy("datas/aim/"+fname,path+"/"+fname);
-			//Call.sendMessage("backup file: "+fname);
-			Log.log(Log.LogLevel.info,"backup file: @",fname)
-		})
-	}
+	Timer.schedule(()=>{
+        if(!Aim.io.isDir(path)){
+	        //Call.sendMessage("begin backup data: "+time)
+		    Log.log(Log.LogLevel.info,"begin backup data: @",time)
+		    Aim.io.mkdir(path);
+		    Aim.io.ls("datas/aim").forEach(fname=>{
+			    if(fname=="backups") return;
+			    Aim.io.copy("datas/aim/"+fname,path+"/"+fname);
+			    //Call.sendMessage("backup file: "+fname);
+			    Log.log(Log.LogLevel.info,"backup file: @",fname)
+		    })
+	    }
+	},10,10)
 	for(let func of Aim.triggers.saveData){
 		func()
 	}
