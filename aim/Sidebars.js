@@ -44,7 +44,7 @@ Aim.event.requires.update1.push(()=>{
             message+=Math.floor(unit.ammo)+"/"+unit.type.ammoCapacity+"\n"
             message+="type: "+type
         }
-        Call.infoPopup(player.con,message,1,Align.right,0,0,450,0)
+        Call.infoPopup(player.con,message,1,Align.right,0,0,150,0)
     })
     Groups.player.each(player=>{
         let data=Aim.data.getData(player)

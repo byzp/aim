@@ -178,7 +178,7 @@ Aim.adminCommands[";reload"]={
         execute("aim/Addon.js");
         execute("aim/MapTags.js");
         execute("aim/MenuUI.js");
-        execute("aim/test.js");
+        //execute("aim/test.js");
         /*
         let pl=Aim.players
         let s=Aim.state
